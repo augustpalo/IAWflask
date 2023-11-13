@@ -12,7 +12,7 @@ def hola():
         rango = ""
         peso = float(request.form.get("peso"))
         altura = float(request.form.get("altura"))
-        imc = round(peso / (altura * altura),2)
+        imc = round(peso / (altura * altura))
         if imc <= 18.5:
             rango = "Bajo peso"
         elif imc > 18.5 and imc <= 24.9:
