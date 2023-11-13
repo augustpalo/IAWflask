@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+<body>
+
+    <h1>Formulario</h1>
+    <h2>Login:</h2>
+
+<form action="/" method="post">
+    <label for="peso">peso:</label>
+    <input type="text" id="peso" name="peso" required><br><br>
+
+    <label for="altura">altura:</label>
+    <input type="altura" id="altura" name="altura" required><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+<p>Su peso es</p>
+{{peso}}
+<p>Su altura es</p>
+{{altura}}
+<p>Su IMC es</p>
+{{imc}}
+
+{{rango}}
+    
+</body>
+
+</html>
