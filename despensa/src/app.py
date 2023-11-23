@@ -28,11 +28,13 @@ def addUser():
     cantidad = request.form['cantidad']
     receta = request.form['receta']
     nevera = request.form['nevera']
+    if nevera != True:
+        nevera = False
 
     if ingrediente and cantidad and receta and receta:
         cursor = db.database.cursor()
         sql = "INSERT INTO despensa (ingrediente, cantidad, receta, nevera) VALUES (%s, %s, %s, %s)"
-        data = (ingrediente, cantidad, receta, nevera)
+        data = (ingrediente, cantidad, receta, int(nevera))
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))
