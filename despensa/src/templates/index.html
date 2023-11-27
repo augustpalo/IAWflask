@@ -32,8 +32,7 @@
                         </div>
                         <div class="col">
                             <label>Nevera?</label>
-                            <input type="hidden" value="0" name="nevera">
-                            <input type="checkbox" checked="true"  class="form-check-input mb-3" name="nevera">
+                            <input type="checkbox" class="form-check-input mb-3" name="nevera">
                         </div>
                         <div class="col">
                             <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>
@@ -87,6 +86,9 @@
                                         <input type="text" class="form-control mb-3" name="cantidad" value="{{d.cantidad}}">
                                         <label>Receta</label>
                                         <input type="text" class="form-control mb-3" name="receta" value="{{d.receta}}">
+                                        <label>Nevera?</label>
+                                        <input type="checkbox" {{ "checked" if d.nevera }} class="form-check-input mb-3" name="nevera">
+                                        
                                   
                                 </div>
                                 <div class="modal-footer">
