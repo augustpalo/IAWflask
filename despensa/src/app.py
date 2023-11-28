@@ -7,8 +7,29 @@ template_dir = os.path.join(template_dir, 'src', 'templates')
 
 app = Flask(__name__, template_folder = template_dir)
 
-#Rutas de la aplicación
 @app.route('/')
+def login():
+    return render_template("login.html")
+
+@app.route('/login', methods=['POST'])
+def userlogin():
+    username = request.form['username']
+    password = request.form['password']
+    if 'userlog' in request.form:
+        cursor = db.database.cursor()
+        data = (username, password)
+        submit_value = request.form['userlog']
+        if submit_value == "crear":
+            sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
+            cursor.execute(sql, data)
+            db.database.commit()
+        if submit_value == "login":
+            sql = "SELECT * FROM users WHERE username=%s AND password=%s"
+            cursor.execute(sql,data)
+    return redirect(url_for('home'))
+
+#Rutas de la aplicación
+@app.route('/index')
 def home():
     cursor = db.database.cursor()
     cursor.execute("SELECT * FROM despensa")
