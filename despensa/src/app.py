@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
+from mysql import connector
 import database as db
 
 template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
@@ -20,13 +21,17 @@ def userlogin():
         data = (username, password)
         submit_value = request.form['userlog']
         if submit_value == "crear":
-            sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
-            cursor.execute(sql, data)
-            db.database.commit()
+            try:
+                sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
+                cursor.execute(sql, data)
+                db.database.commit()
+            except(connector.errors.IntegrityError):
+                error = "Ese usuario ya existe"
+
         if submit_value == "login":
             sql = "SELECT * FROM users WHERE username=%s AND password=%s"
             cursor.execute(sql,data)
-    return redirect(url_for('home'))
+    return redirect(url_for('login',data=error))
 
 #Rutas de la aplicación
 @app.route('/index')
