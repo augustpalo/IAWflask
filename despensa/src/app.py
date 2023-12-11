@@ -16,6 +16,7 @@ def login():
 def userlogin():
     username = request.form['username']
     password = request.form['password']
+    error="Deberia estar el error aqui"
     if 'userlog' in request.form:
         cursor = db.database.cursor()
         data = (username, password)
@@ -26,12 +27,20 @@ def userlogin():
                 cursor.execute(sql, data)
                 db.database.commit()
             except(connector.errors.IntegrityError):
-                error = "Ese usuario ya existe"
-
+                error = "1"
+                print(error)
         if submit_value == "login":
             sql = "SELECT * FROM users WHERE username=%s AND password=%s"
             cursor.execute(sql,data)
-    return redirect(url_for('login',data=error))
+            var = cursor.fetchone(1)
+            if var == None:
+                error = "2"
+                print(error)
+            else:
+                return render_template("index.html")
+
+    return render_template("login.html", error=error)
+
 
 #Rutas de la aplicación
 @app.route('/index')

@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Iniciar sesión</title>
+  <script>
+
+  var miVariable = "{{ error }}"; // Asegúrate de colocar el nombre correcto de la variable de Flask
+  
+  // Verificar si la variable tiene el valor "alog"
+  if (miVariable === "1") {
+    // Mostrar una alerta en HTML
+
+    alert("Ese usuario ya existe");
+  }
+  </script>
 </head>
 <body>
   <form action="/login" method="post">
@@ -14,7 +25,6 @@
     <button type="submit" name="userlog" value="login">Iniciar</button>
     <button type="submit" name="userlog" value="crear">Crear cuenta</button>
     <br>
-    {{error}}
   </form>
-</body>
+  </body>
 </html>
