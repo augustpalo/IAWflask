@@ -14,9 +14,9 @@ def login():
 
 @app.route('/login', methods=['POST'])
 def userlogin():
+    error = 0
     username = request.form['username']
     password = request.form['password']
-    error="Deberia estar el error aqui"
     if 'userlog' in request.form:
         cursor = db.database.cursor()
         data = (username, password)
@@ -29,10 +29,10 @@ def userlogin():
             except(connector.errors.IntegrityError):
                 error = "1"
                 print(error)
-        if submit_value == "login":
+        elif submit_value == "login":
             sql = "SELECT * FROM users WHERE username=%s AND password=%s"
             cursor.execute(sql,data)
-            var = cursor.fetchone(1)
+            var = cursor.fetchone()
             if var == None:
                 error = "2"
                 print(error)

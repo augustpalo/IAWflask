@@ -5,13 +5,12 @@
   <title>Iniciar sesión</title>
   <script>
 
-  var miVariable = "{{ error }}"; // Asegúrate de colocar el nombre correcto de la variable de Flask
-  
-  // Verificar si la variable tiene el valor "alog"
-  if (miVariable === "1") {
-    // Mostrar una alerta en HTML
-
+  var error = "{{ error }}"; 
+  if (error === "1") {
     alert("Ese usuario ya existe");
+  }
+  else if (error === "2"){
+    alert("Usuario inexistente")
   }
   </script>
 </head>
