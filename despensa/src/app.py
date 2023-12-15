@@ -26,6 +26,7 @@ def userlogin():
                 sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
                 cursor.execute(sql, data)
                 db.database.commit()
+                return redirect(url_for("home"))
             except(connector.errors.IntegrityError):
                 error = "1"
                 print(error)
@@ -37,7 +38,7 @@ def userlogin():
                 error = "2"
                 print(error)
             else:
-                return render_template("index.html")
+                return redirect(url_for("home"))
 
     return render_template("login.html", error=error)
 
